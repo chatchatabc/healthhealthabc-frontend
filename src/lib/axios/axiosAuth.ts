@@ -1,7 +1,7 @@
 import { axiosPostJson } from "./axiosActions";
 
 export const axiosAuthRegister = (body: object) => {
-  return axiosPostJson("/auth/register", body);
+  return axiosPostJson("/auth/register/patient", body);
 };
 
 export const axiosAuthLogin = (body: object) => {
