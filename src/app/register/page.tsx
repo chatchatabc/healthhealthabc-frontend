@@ -29,16 +29,27 @@ function RegisterPage() {
       console.log("Success:", values, res);
     } catch (err) {
       const error = err as AxiosError;
-      const errorResponse = error.response?.data ?? ({} as any);
-      const errorValue = errorResponse.errorValue ?? "Test";
-
+      const errorResponse = error.response ?? ({} as any);
+      const errorContent = errorResponse?.data?.errorContent ?? ({} as any);
+      const errorStatus = errorResponse.status ?? 503;
       console.log("Error:", error);
+
+      if (errorStatus === 400) {
+        console.log("test");
+        setErrorText(
+          <span>
+            <b>{errorContent.value}</b> {errorContent.message}
+          </span>
+        );
+      } else if (errorStatus === 502) {
+        console.log("test");
+        setErrorText(<span>Bad Gateway</span>);
+      } else {
+        console.log("test");
+        setErrorText(<span>Server cannot be reached</span>);
+      }
+
       setSuccessText(null);
-      setErrorText(
-        <span>
-          <b>{errorValue}</b> is already been taken!
-        </span>
-      );
     }
     setLoading(false);
   }
