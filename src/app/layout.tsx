@@ -29,10 +29,7 @@ export default function RootLayout({
             {/* Nav Links */}
             <ul className="ml-auto flex items-center space-x-8">
               <li className="">
-                <a href="/login">Login</a>
-              </li>
-              <li className="">
-                <a href="/login">Login</a>
+                <a href="/register">Register</a>
               </li>
               <li className="">
                 <a href="/login">Login</a>
