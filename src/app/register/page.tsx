@@ -2,9 +2,11 @@
 
 import React from "react";
 import { Button, Form, Input, Alert } from "antd";
-import { axiosAuthRegister } from "../lib/axios/axiosAuth";
+import { axiosAuthRegister } from "@/lib/axios/axiosAuth";
+import { AxiosError } from "axios";
 
 function RegisterPage() {
+  const [loading, setLoading] = React.useState(false);
   const [successText, setSuccessText] = React.useState<null | React.ReactNode>(
     null
   );
@@ -14,26 +16,31 @@ function RegisterPage() {
   const [form] = Form.useForm();
 
   async function onFinish(values: any) {
+    setLoading(true);
     try {
       const res = await axiosAuthRegister(values);
       setSuccessText(
         <span>
-          <b className="capitalize">{values.username}</b> you are now
-          successfully registered!
+          <b>{values.username}</b> you are now successfully registered!
         </span>
       );
       setErrorText(null);
       form.resetFields();
       console.log("Success:", values, res);
     } catch (err) {
-      console.log("Error:", err);
+      const error = err as AxiosError;
+      const errorResponse = error.response?.data ?? ({} as any);
+      const errorValue = errorResponse.errorValue ?? "Test";
+
+      console.log("Error:", error);
       setSuccessText(null);
       setErrorText(
         <span>
-          <b className="capitalize">{values.username}</b> is already been taken!
+          <b>{errorValue}</b> is already been taken!
         </span>
       );
     }
+    setLoading(false);
   }
 
   return (
@@ -62,7 +69,7 @@ function RegisterPage() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
-          style={{ width: "400px" }}
+          style={{ maxWidth: "400px" }}
           onFinish={onFinish}
           autoComplete="off"
         >
@@ -116,7 +123,7 @@ function RegisterPage() {
 
           {/* Submit Button */}
           <Form.Item wrapperCol={{ offset: 19 }}>
-            <Button type="primary" htmlType="submit">
+            <Button loading={loading} type="primary" htmlType="submit">
               Submit
             </Button>
           </Form.Item>
