@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 export const metadata = {
@@ -18,25 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         {/* Nav Bar */}
-        <header className="bg-blue-50">
-          {/* Nav Menu */}
-          <nav className="container flex mx-auto px-4 lg:px-8">
-            {/* Logo */}
-            <a className="py-4 inline-block" href="/">
-              <p>Logo</p>
-            </a>
-
-            {/* Nav Links */}
-            <ul className="ml-auto flex items-center space-x-8">
-              <li className="">
-                <a href="/register">Register</a>
-              </li>
-              <li className="">
-                <a href="/login">Login</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
+        <Navbar />
 
         {/* Main Content */}
         {children}

@@ -3,7 +3,7 @@
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import Section from "./components/widgets/Section";
+import Section from "@/components/widgets/Section";
 
 function Home() {
   const testRef = React.useRef<HTMLUListElement>(null);
