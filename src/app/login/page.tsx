@@ -35,8 +35,8 @@ function LoginPage() {
   };
 
   return (
-    <main className="flex-1 grid place-items-center">
-      <div className="mx-auto">
+    <main className="flex-1 grid items-center">
+      <div className="mx-auto w-full max-w-md px-4">
         <h1 className="text-2xl text-center">Login Page</h1>
         {errorText && (
           <Alert
@@ -53,7 +53,6 @@ function LoginPage() {
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
-          style={{ maxWidth: "400px" }}
           autoComplete="off"
         >
           <Form.Item
@@ -72,11 +71,14 @@ function LoginPage() {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item wrapperCol={{ offset: 19 }}>
-            <Button loading={loading} type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
+          <Button
+            className="block mx-auto"
+            loading={loading}
+            type="primary"
+            htmlType="submit"
+          >
+            Submit
+          </Button>
         </Form>
       </div>
     </main>

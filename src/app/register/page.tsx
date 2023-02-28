@@ -44,8 +44,8 @@ function RegisterPage() {
   }
 
   return (
-    <main className="flex-1 grid place-items-center">
-      <div className="mx-auto">
+    <main className="flex-1 grid items-center">
+      <div className="mx-auto w-full max-w-md px-4">
         <h1 className="text-2xl text-center">Register Page</h1>
         {successText && (
           <Alert
@@ -69,7 +69,6 @@ function RegisterPage() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
-          style={{ maxWidth: "400px" }}
           onFinish={onFinish}
           autoComplete="off"
         >
@@ -122,11 +121,14 @@ function RegisterPage() {
           </Form.Item>
 
           {/* Submit Button */}
-          <Form.Item wrapperCol={{ offset: 19 }}>
-            <Button loading={loading} type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
+          <Button
+            className="mx-auto block"
+            loading={loading}
+            type="primary"
+            htmlType="submit"
+          >
+            Submit
+          </Button>
         </Form>
       </div>
     </main>
