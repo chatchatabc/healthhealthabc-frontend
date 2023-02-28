@@ -68,7 +68,6 @@ function Home() {
         <div className="flex items-center">
           <button
             onClick={() => {
-              console.log(testRef);
               if (testRef.current) testRef.current.scrollLeft -= 300;
             }}
             className="w-8 h-8 rounded-full bg-white text-[#00A3E0] border-4 border-[#00A3E0]"
@@ -84,7 +83,7 @@ function Home() {
                 key={specialty}
                 className="snap-start w-1/3 shrink-0 px-2 grid"
               >
-                <div className="bg-[#00A3E0] grid place-items-center min-h-[200px] h-full">
+                <div className="bg-[#00A3E0] grid place-items-center min-h-[150px] h-full">
                   <figure className="text-white">
                     <figcaption>
                       <h3 className="text-center">{specialty}</h3>
@@ -96,7 +95,6 @@ function Home() {
           </ul>
           <button
             onClick={() => {
-              console.log(testRef);
               if (testRef.current) testRef.current.scrollLeft += 300;
             }}
             className="w-8 h-8 rounded-full bg-white text-[#00A3E0] border-4 border-[#00A3E0]"
@@ -109,10 +107,12 @@ function Home() {
       {/* Top Doctors Section */}
       <Section sectionTitle="Top Doctors">
         <ul className="space-y-4">
-          {topDoctors.map((doctor) => (
+          {topDoctors.map((doctor, index) => (
             <li
-              key={doctor.name}
-              className={"bg-[#CCDDE4] rounded-xl overflow-hidden p-1"}
+              key={`${doctor.name}-${index}`}
+              className={
+                "shadow-lg bg-[#CCDDE4] rounded-xl overflow-hidden p-1"
+              }
             >
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 rounded-full bg-[#00A3E0]"></div>
@@ -124,6 +124,23 @@ function Home() {
             </li>
           ))}
         </ul>
+      </Section>
+
+      {/* Top Hospitals Section */}
+      <Section sectionTitle="Top Hospitals">
+        <div className="flex space-x-4">
+          <div className="flex-1 bg-[#00A3E0] rounded-lg overflow-hidden">
+            Test
+          </div>
+          <div className="w-1/2 space-y-2">
+            <div className="aspect-video bg-[#00A3E0] rounded-lg overflow-hidden">
+              Test
+            </div>
+            <div className="aspect-video bg-[#00A3E0] rounded-lg overflow-hidden">
+              Test
+            </div>
+          </div>
+        </div>
       </Section>
     </main>
   );
