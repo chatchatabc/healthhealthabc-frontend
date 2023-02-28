@@ -8,18 +8,32 @@ function RegisterPage() {
   const [successText, setSuccessText] = React.useState<null | React.ReactNode>(
     null
   );
+  const [errorText, setErrorText] = React.useState<null | React.ReactNode>(
+    null
+  );
   const [form] = Form.useForm();
 
   async function onFinish(values: any) {
-    const res = await axiosAuthRegister(values);
-    setSuccessText(
-      <span>
-        <b className="capitalize">{values.username}</b> you are now successfully
-        registered!
-      </span>
-    );
-    form.resetFields();
-    console.log("Success:", values, res);
+    try {
+      const res = await axiosAuthRegister(values);
+      setSuccessText(
+        <span>
+          <b className="capitalize">{values.username}</b> you are now
+          successfully registered!
+        </span>
+      );
+      setErrorText(null);
+      form.resetFields();
+      console.log("Success:", values, res);
+    } catch (err) {
+      console.log("Error:", err);
+      setSuccessText(null);
+      setErrorText(
+        <span>
+          <b className="capitalize">{values.username}</b> is already been taken!
+        </span>
+      );
+    }
   }
 
   return (
@@ -31,6 +45,13 @@ function RegisterPage() {
             className="mt-8 text-uppercase"
             message={successText}
             type="success"
+          />
+        )}
+        {errorText && (
+          <Alert
+            className="mt-8 text-uppercase"
+            message={errorText}
+            type="error"
           />
         )}
 
