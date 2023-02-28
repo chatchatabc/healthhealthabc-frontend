@@ -46,7 +46,12 @@ function Home() {
       {/* Mobile */}
       <section className="p-4 space-y-2 container mx-auto">
         <header>
-          <h2 className="text-2xl font-bold">Find the Right Doctor</h2>
+          <h2 className="text-2xl font-bold">
+            Find the{" "}
+            <span className="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#00A3E0] to-[#F81B1B]">
+              Right Doctor
+            </span>
+          </h2>
         </header>
         <div className="flex space-x-4">
           <Input
