@@ -15,6 +15,24 @@ function Home() {
     "Internal Medicine",
   ];
 
+  const topDoctors = [
+    {
+      name: "Dr. John Doe",
+      specialty: "Dentist",
+      avatar: "https://picsum.photos/200",
+    },
+    {
+      name: "Dr. John Doe",
+      specialty: "Dentist",
+      avatar: "https://picsum.photos/200",
+    },
+    {
+      name: "Dr. John Doe",
+      specialty: "Dentist",
+      avatar: "https://picsum.photos/200",
+    },
+  ];
+
   return (
     <main className="flex-1">
       {/* Desktop */}
@@ -40,7 +58,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Top Specialty */}
+      {/* Top Specialty Section */}
       <Section sectionTitle="Top Specialty">
         <div className="flex items-center">
           <button
@@ -81,6 +99,26 @@ function Home() {
             X
           </button>
         </div>
+      </Section>
+
+      {/* Top Doctors Section */}
+      <Section sectionTitle="Top Doctors">
+        <ul className="space-y-4">
+          {topDoctors.map((doctor) => (
+            <li
+              key={doctor.name}
+              className={"bg-[#CCDDE4] rounded-xl overflow-hidden p-1"}
+            >
+              <div className="flex items-center space-x-4">
+                <div className="w-16 h-16 rounded-full bg-[#00A3E0]"></div>
+                <div>
+                  <h3 className="text-lg font-bold">{doctor.name}</h3>
+                  <p className="text-sm">{doctor.specialty}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Section>
     </main>
   );
