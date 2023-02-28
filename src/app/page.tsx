@@ -1,91 +1,89 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
 
-const inter = Inter({ subsets: ['latin'] })
+import React from "react";
+import { UserOutlined } from "@ant-design/icons";
+import { Input } from "antd";
+import Section from "./components/widgets/Section";
 
-export default function Home() {
+function Home() {
+  const testRef = React.useRef<HTMLUListElement>(null);
+
+  const topSpecialties = [
+    "Dentist",
+    "Dermatologist",
+    "Psychiatrist",
+    "Internal Medicine",
+  ];
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="flex-1">
+      {/* Desktop */}
+      <section className="hidden py-16">
+        {/* Section Background */}
+        <div className="absolute h-full w-full flex">
+          <div className="bg-[#00A3E0]"></div>
+        </div>
+      </section>
+
+      {/* Mobile */}
+      <section className="p-4 space-y-2 container mx-auto">
+        <header>
+          <h2 className="text-2xl font-bold">Find the Right Doctor</h2>
+        </header>
+        <div className="flex space-x-4">
+          <Input
+            prefix={<UserOutlined />}
+            className="rounded-full h-8"
+            placeholder="Search"
+          />
+          <button className="w-8 h-8 text-white bg-[#00A3E0]">X</button>
+        </div>
+      </section>
+
+      {/* Top Specialty */}
+      <Section sectionTitle="Top Specialty">
+        <div className="flex items-center">
+          <button
+            onClick={() => {
+              console.log(testRef);
+              if (testRef.current) testRef.current.scrollLeft -= 300;
+            }}
+            className="w-8 h-8 rounded-full bg-white text-[#00A3E0] border-4 border-[#00A3E0]"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            X
+          </button>
+          <ul
+            ref={testRef}
+            className="scroll-smooth flex flex-1 overflow-auto snap-x"
+          >
+            {topSpecialties.map((specialty) => (
+              <li
+                key={specialty}
+                className="snap-start w-1/3 shrink-0 px-2 grid"
+              >
+                <div className="bg-[#00A3E0] grid place-items-center min-h-[200px] h-full">
+                  <figure className="text-white">
+                    <figcaption>
+                      <h3 className="text-center">{specialty}</h3>
+                    </figcaption>
+                  </figure>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={() => {
+              console.log(testRef);
+              if (testRef.current) testRef.current.scrollLeft += 300;
+            }}
+            className="w-8 h-8 rounded-full bg-white text-[#00A3E0] border-4 border-[#00A3E0]"
+          >
+            X
+          </button>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </Section>
     </main>
-  )
+  );
 }
+
+export default Home;
