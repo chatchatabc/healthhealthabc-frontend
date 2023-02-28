@@ -3,7 +3,14 @@
 import React, { useEffect } from "react";
 
 function Navbar() {
-  const [userData, setUserData] = React.useState({});
+  const [userData, setUserData] = React.useState<any>({});
+
+  const handleLogout = () => {
+    // Remove token from cookies
+    document.cookie = "token=;";
+    // Redirect to home page
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     // Get user data from cookies
@@ -13,7 +20,6 @@ function Navbar() {
       return { ...acc, [key]: value };
     }, {});
     setUserData(userData);
-    console.log(userData);
   }, []);
 
   return (
@@ -27,21 +33,29 @@ function Navbar() {
 
         {/* Nav Links */}
         <ul className="ml-auto flex items-center">
-          <li>
-            <a className="flex items-center p-4" href="/register">
-              Register
-            </a>
-          </li>
-          <li>
-            <a className="flex items-center p-4" href="/login">
-              Login
-            </a>
-          </li>
-          <li>
-            <button className="flex items-center p-4 bg-transparent">
-              Logout
-            </button>
-          </li>
+          {userData.token ? (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="flex items-center p-4 bg-transparent"
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <a className="flex items-center p-4" href="/register">
+                  Register
+                </a>
+              </li>
+              <li>
+                <a className="flex items-center p-4" href="/login">
+                  Login
+                </a>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

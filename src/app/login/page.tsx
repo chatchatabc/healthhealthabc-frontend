@@ -3,7 +3,7 @@
 import React from "react";
 import { AxiosError } from "axios";
 import { Button, Form, Input, Alert } from "antd";
-import { axiosAuthLogin } from "../lib/axios/axiosAuth";
+import { axiosAuthLogin } from "@/lib/axios/axiosAuth";
 
 function LoginPage() {
   const [loading, setLoading] = React.useState(false);
@@ -16,6 +16,12 @@ function LoginPage() {
     try {
       const res = await axiosAuthLogin(values);
       console.log("Success:", values, res);
+
+      // Save token in cookies
+      document.cookie = `token=${res.data.token}; path=/; max-age=3600`;
+
+      // Redirect to home page
+      window.location.href = "/";
     } catch (err) {
       const error = err as AxiosError;
       if (error.code === "ERR_BAD_REQUEST")
