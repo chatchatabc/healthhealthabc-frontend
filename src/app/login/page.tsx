@@ -1,46 +1,25 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { AxiosError } from "axios";
 import { Button, Form, Input, Alert } from "antd";
-import { axiosAuthLogin } from "@/lib/axios/axiosAuth";
+import { authLogin } from "@/domain/service/AuthService";
 
 function LoginPage() {
   const [loading, setLoading] = React.useState(true);
   const [errorText, setErrorText] = React.useState<null | React.ReactNode>(
     null
   );
-  const router = useRouter();
 
   const onFinish = async (values: any) => {
     setLoading(true);
-    try {
-      const res = await axiosAuthLogin(values);
-
-      // Get x-access-token from headers
-      const token = res.headers["x-access-token"];
-
-      // Save token in cookies
-      document.cookie = `token=${token}; path=/; max-age=3600`;
-
-      // Redirect to home page
-      window.location.href = "/";
-    } catch (err) {
-      const error = err as AxiosError;
-      if (error.code === "ERR_BAD_REQUEST")
-        setErrorText("Incorrect credentials");
-      else {
-        setErrorText("Connection timed out");
-      }
-      console.log("Error:", error);
-    }
+    const loggedIn = await authLogin(values);
+    if (loggedIn) window.location.href = "/";
     setLoading(false);
   };
 
   useEffect(() => {
     // Redirect user to home page if already logged in
-    if (document.cookie.includes("token")) router.push("/");
+    if (document.cookie.includes("token")) window.location.href = "/";
     setLoading(false);
   }, []);
 

@@ -1,56 +1,19 @@
 "use client";
 
 import React from "react";
-import { Button, Form, Input, Alert } from "antd";
-import { axiosAuthRegister } from "@/lib/axios/axiosAuth";
-import { AxiosError } from "axios";
+import { Button, Form, Input } from "antd";
+import { authPatientRegister } from "@/domain/service/AuthService";
 
 function RegisterPage() {
   const [loading, setLoading] = React.useState(false);
-  const [successText, setSuccessText] = React.useState<null | React.ReactNode>(
-    null
-  );
-  const [errorText, setErrorText] = React.useState<null | React.ReactNode>(
-    null
-  );
   const [form] = Form.useForm();
 
   async function onFinish(values: any) {
     setLoading(true);
-    try {
-      const res = await axiosAuthRegister(values);
-      setSuccessText(
-        <span>
-          <b>{values.username}</b> you are now successfully registered!
-        </span>
-      );
-      setErrorText(null);
-      form.resetFields();
-      console.log("Success:", values, res);
-    } catch (err) {
-      const error = err as AxiosError;
-      const errorResponse = error.response ?? ({} as any);
-      const errorContent = errorResponse?.data?.errorContent ?? ({} as any);
-      const errorStatus = errorResponse.status ?? 503;
-      console.log("Error:", error);
 
-      if (errorStatus === 400) {
-        console.log("test");
-        setErrorText(
-          <span>
-            <b>{errorContent.value}</b> {errorContent.message}
-          </span>
-        );
-      } else if (errorStatus === 502) {
-        console.log("test");
-        setErrorText(<span>Bad Gateway</span>);
-      } else {
-        console.log("test");
-        setErrorText(<span>Server cannot be reached</span>);
-      }
+    const isRegistered = await authPatientRegister(values);
+    if (isRegistered) form.resetFields();
 
-      setSuccessText(null);
-    }
     setLoading(false);
   }
 
@@ -58,20 +21,6 @@ function RegisterPage() {
     <main className="flex-1 grid items-center">
       <div className="mx-auto w-full max-w-md px-4">
         <h1 className="text-2xl text-center">Register Page</h1>
-        {successText && (
-          <Alert
-            className="mt-8 text-uppercase"
-            message={successText}
-            type="success"
-          />
-        )}
-        {errorText && (
-          <Alert
-            className="mt-8 text-uppercase"
-            message={errorText}
-            type="error"
-          />
-        )}
 
         <Form
           className="mt-8"
