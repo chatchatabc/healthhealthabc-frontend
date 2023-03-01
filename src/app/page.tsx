@@ -3,7 +3,7 @@
 import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import Section from "@/components/widgets/Section";
+import Section from "@/components/Section";
 
 function Home() {
   const testRef = React.useRef<HTMLUListElement>(null);
@@ -30,6 +30,60 @@ function Home() {
       name: "Dr. John Doe",
       specialty: "Dentist",
       avatar: "https://picsum.photos/200",
+    },
+  ];
+
+  const whyChooseUs = [
+    {
+      name: "24h Services",
+      image: "support.svg",
+    },
+    {
+      name: "Professional",
+      image: "professional.svg",
+    },
+    {
+      name: "Privacy & Security",
+      image: "privacy.svg",
+    },
+    {
+      name: "Healthy Care",
+      image: "care.svg",
+    },
+    {
+      name: "Reviewed & Verified",
+      image: "verified.svg",
+    },
+  ];
+
+  const howItWorks = [
+    {
+      title: "Sign up / Log in",
+      description:
+        "To book a slot with your doctor and pay for the consultant.",
+      image: "login.svg",
+    },
+    {
+      title: "Choose Doctor",
+      description:
+        "The doctor as per your need and time that best suits for you.",
+      image: "choose.svg",
+    },
+    {
+      title: "Schedule & Confirm",
+      description:
+        "Make an appointment with the doctor and confirm the information.",
+      image: "schedule.svg",
+    },
+    {
+      title: "Payment",
+      description: "Pay for you appointment and get the service.",
+      image: "payment.png",
+    },
+    {
+      title: "See a Doctor",
+      description: "See a doctor and get better.",
+      image: "see.svg",
     },
   ];
 
@@ -141,6 +195,53 @@ function Home() {
             </div>
           </div>
         </div>
+      </Section>
+
+      {/* Why Choose Us Section */}
+      <Section sectionTitle="Why Choose Us">
+        <ul className="flex justify-center flex-wrap">
+          {whyChooseUs.map((item, index) => (
+            <li className="w-1/3 p-2" key={index + item.name}>
+              <figure className="space-y-4 flex flex-col items-center">
+                <img
+                  className="w-full aspect-square"
+                  src={`/images/why/${item.image}`}
+                  alt="24h Services"
+                />
+                <figcaption>
+                  <h3 className="text-sm text-center font-bold">{item.name}</h3>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* How it works Section */}
+      <Section sectionTitle="How it works">
+        {/* Steps how to use the application */}
+        <ul className="space-y-2">
+          {howItWorks.map((item, index) => (
+            <li key={index + item.title}>
+              <div className="flex space-x-4">
+                <div className="flex items-center space-y-2 flex-col">
+                  <img
+                    className="w-16 aspect-square"
+                    src={`/images/how/${item.image}`}
+                    alt={item.title}
+                  />
+                  {index !== howItWorks.length - 1 && (
+                    <div className="w-1 flex-1 bg-black"></div>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold">{item.title}</h3>
+                  <p className="mb-16">{item.description}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Section>
     </main>
   );
