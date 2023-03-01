@@ -7,7 +7,7 @@ function Navbar() {
 
   const handleLogout = () => {
     // Remove token from cookies
-    document.cookie = "token=;";
+    document.cookie = "token=deleted; path=/; max-age=0";
     // Redirect to home page
     window.location.href = "/";
   };
