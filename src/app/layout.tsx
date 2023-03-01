@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import "./globals.css";
+import Notification from "@/app/Notification";
 
 export const metadata = {
   title: "HealthHealthABC",
@@ -20,6 +21,8 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         {/* Nav Bar */}
         <Navbar />
+
+        <Notification />
 
         {/* Main Content */}
         {children}
