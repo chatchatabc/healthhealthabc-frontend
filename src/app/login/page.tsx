@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import { Button, Form, Input, Alert } from "antd";
 import { axiosAuthLogin } from "@/lib/axios/axiosAuth";
 
 function LoginPage() {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [errorText, setErrorText] = React.useState<null | React.ReactNode>(
     null
   );
@@ -17,13 +17,15 @@ function LoginPage() {
     setLoading(true);
     try {
       const res = await axiosAuthLogin(values);
-      console.log("Success:", values, res);
+
+      // Get x-access-token from headers
+      const token = res.headers["x-access-token"];
 
       // Save token in cookies
-      document.cookie = `token=${res.data.token}; path=/; max-age=3600`;
+      document.cookie = `token=${token}; path=/; max-age=3600`;
 
       // Redirect to home page
-      router.push("/");
+      window.location.href = "/";
     } catch (err) {
       const error = err as AxiosError;
       if (error.code === "ERR_BAD_REQUEST")
@@ -35,6 +37,12 @@ function LoginPage() {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    // Redirect user to home page if already logged in
+    if (document.cookie.includes("token")) router.push("/");
+    setLoading(false);
+  }, []);
 
   return (
     <main className="flex-1 grid items-center">
@@ -79,7 +87,7 @@ function LoginPage() {
             type="primary"
             htmlType="submit"
           >
-            Submit
+            Login
           </Button>
         </Form>
       </div>
