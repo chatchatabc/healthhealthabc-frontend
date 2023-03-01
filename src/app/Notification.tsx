@@ -13,10 +13,11 @@ function Notification() {
 }
 
 export function addNotification(
+  message: React.ReactNode,
   description: React.ReactNode,
-  message: React.ReactNode
+  type: "success" | "info" | "warning" | "error" = "info"
 ) {
-  notificationInstance.info({
+  notificationInstance[type]({
     message,
     description,
     placement: "topRight",

@@ -13,11 +13,14 @@ export const axiosError = (err: any) => {
     const { errorContent } = error.response.data ?? ({} as any);
 
     if (errorContent) {
-      notificationError(`${errorContent.value} ${errorContent.message}`);
+      notificationError(
+        "Axios Error",
+        `${errorContent.value} ${errorContent.message}`
+      );
     } else if (errorStatus === 502) {
-      notificationError("Bad Gateway");
+      notificationError("Axios Error", "Bad Gateway");
     } else {
-      notificationError(error.message);
+      notificationError("Axios Error", error.message);
       console.log("Server cannot be reached");
     }
   } else if (error.request) {
@@ -27,7 +30,7 @@ export const axiosError = (err: any) => {
     console.log(error.request);
   } else {
     // Something happened in setting up the request that triggered an Error
-    notificationError("Server cannot be reached");
+    notificationError("Axios Error", "Server cannot be reached");
     console.log("Error", error.message);
   }
 };

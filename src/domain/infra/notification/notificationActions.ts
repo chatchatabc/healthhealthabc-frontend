@@ -1,17 +1,30 @@
+import { ReactNode } from "react";
 import { addNotification } from "@/app/Notification";
 
-export const notificationError = (message: string) => {
-  addNotification("error", message);
+export const notificationError = (
+  message: ReactNode,
+  description: ReactNode
+) => {
+  addNotification(message, description, "error");
 };
 
-export const notificationSuccess = (message: string) => {
-  addNotification("success", message);
+export const notificationSuccess = (
+  message: ReactNode,
+  description: ReactNode
+) => {
+  addNotification(message, description, "success");
 };
 
-export const notificationInfo = (message: string) => {
-  addNotification("info", message);
+export const notificationInfo = (
+  message: ReactNode,
+  description: ReactNode
+) => {
+  addNotification(message, description, "info");
 };
 
-export const notificationWarning = (message: string) => {
-  addNotification("warning", message);
+export const notificationWarning = (
+  message: ReactNode,
+  description: ReactNode
+) => {
+  addNotification(message, description, "warning");
 };

@@ -9,7 +9,7 @@ export const authPatientRegister = async (body: AuthPatientRegisterRequest) => {
   const response = await axiosPostJson("/auth/register/patient", body);
   if (!response) return null;
 
-  notificationSuccess("Registration successful!");
+  notificationSuccess("Registration successful!", "Please login to continue");
 
   return response;
 };
@@ -24,7 +24,7 @@ export const authLogin = async (body: AuthLoginRequest) => {
   // Save token in cookies
   document.cookie = `token=${token}; path=/; max-age=3600`;
 
-  notificationSuccess("Login successful!");
+  notificationSuccess("Login successful!", "Welcome back!");
 
   return response;
 };
