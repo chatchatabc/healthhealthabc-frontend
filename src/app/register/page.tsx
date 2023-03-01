@@ -87,7 +87,13 @@ function RegisterPage() {
           <Form.Item
             label="Email"
             name="email"
-            rules={[{ required: true, message: "Please input your email!" }]}
+            rules={[
+              { required: true, message: "Please input your email!" },
+              {
+                type: "email",
+                message: "Please input a valid email!",
+              },
+            ]}
           >
             <Input />
           </Form.Item>
