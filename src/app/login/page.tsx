@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import { Button, Form, Input, Alert } from "antd";
 import { axiosAuthLogin } from "@/lib/axios/axiosAuth";
@@ -10,6 +11,7 @@ function LoginPage() {
   const [errorText, setErrorText] = React.useState<null | React.ReactNode>(
     null
   );
+  const router = useRouter();
 
   const onFinish = async (values: any) => {
     setLoading(true);
@@ -21,7 +23,7 @@ function LoginPage() {
       document.cookie = `token=${res.data.token}; path=/; max-age=3600`;
 
       // Redirect to home page
-      window.location.href = "/";
+      router.push("/");
     } catch (err) {
       const error = err as AxiosError;
       if (error.code === "ERR_BAD_REQUEST")
