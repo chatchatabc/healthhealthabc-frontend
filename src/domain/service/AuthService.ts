@@ -1,5 +1,8 @@
 import { axiosPostJson } from "../infra/axios/axiosActions";
-import { notificationSuccess } from "../infra/notification/notificationActions";
+import {
+  notificationError,
+  notificationSuccess,
+} from "../infra/notification/notificationActions";
 import {
   AuthLoginRequest,
   AuthPatientRegisterRequest,
@@ -7,7 +10,12 @@ import {
 
 export const authPatientRegister = async (body: AuthPatientRegisterRequest) => {
   const response = await axiosPostJson("/auth/register/patient", body);
-  if (!response) return null;
+
+  // Check if response is null
+  if (!response) {
+    notificationError("Registration failed!", "Server error");
+    return null;
+  }
 
   notificationSuccess("Registration successful!", "Please login to continue");
 
@@ -16,10 +24,21 @@ export const authPatientRegister = async (body: AuthPatientRegisterRequest) => {
 
 export const authLogin = async (body: AuthLoginRequest) => {
   const response = await axiosPostJson("/auth/login", body);
-  if (!response) return null;
+
+  // Check if response is null
+  if (!response) {
+    notificationError("Login failed!", "Server error");
+    return null;
+  }
 
   // Get x-access-token from headers
   const token = response.headers["x-access-token"];
+
+  // Check if token is null
+  if (!token) {
+    notificationError("Login failed!", "Token not found");
+    return null;
+  }
 
   // Save token in cookies
   document.cookie = `token=${token}; path=/; max-age=3600`;
