@@ -3,12 +3,8 @@ import {
   notificationError,
   notificationSuccess,
 } from "../infra/notification/notificationActions";
-import {
-  AuthLoginRequest,
-  AuthPatientRegisterRequest,
-} from "../model/AuthModel";
 
-export const authPatientRegister = async (body: AuthPatientRegisterRequest) => {
+export const authPatientRegister = async (body: any) => {
   const response = await axiosPostJson("/auth/register/patient", body);
 
   // Check if response is null
@@ -22,7 +18,7 @@ export const authPatientRegister = async (body: AuthPatientRegisterRequest) => {
   return response;
 };
 
-export const authLogin = async (body: AuthLoginRequest) => {
+export const authLogin = async (body: any) => {
   const response = await axiosPostJson("/auth/login", body);
 
   // Check if response is null
