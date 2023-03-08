@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, AudioOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import Section from "@/components/Section";
 
 function Home() {
+  const { Search } = Input;
+
   const testRef = React.useRef<HTMLUListElement>(null);
 
   const topSpecialties = [
@@ -89,16 +91,36 @@ function Home() {
 
   return (
     <main className="flex-1">
-      {/* Desktop */}
-      <section className="hidden py-16">
-        {/* Section Background */}
-        <div className="absolute h-full w-full flex">
-          <div className="bg-[#00A3E0]"></div>
+      {/* Desktop Search Section */}
+      <section className="px-4 lg:px-8">
+        {/* Container */}
+        <div className="hidden h-96 relative container mx-auto rounded-xl overflow-hidden lg:flex">
+          {/* Left */}
+          <div className="bg-[#00A3E0] flex-1 py-24 px-2 flex flex-col justify-between">
+            <h2 className="text-3xl font-medium">
+              Best way to find the{" "}
+              <span className="text-white">RIGHT DOCTOR</span>
+            </h2>
+            <div className="-mr-24 relative flex ml-4">
+              <SearchOutlined className="absolute pointer-events-none left-2 top-1/2 -translate-y-1/2" />
+              <input className="flex-1 pl-8 p-1 rounded-l-lg" />
+              <button className="px-4 p-1 bg-white rounded-r-lg">Search</button>
+            </div>
+          </div>
+
+          {/* Right */}
+          <div className="flex-1">
+            <img
+              className="w-full h-full object-cover"
+              src="/images/hero-bg.png"
+              alt=""
+            />
+          </div>
         </div>
       </section>
 
       {/* Mobile */}
-      <section className="p-4 space-y-2 container mx-auto">
+      <section className="p-4 space-y-2 container mx-auto lg:hidden">
         <header>
           <h2 className="text-2xl font-bold">
             Find the{" "}
