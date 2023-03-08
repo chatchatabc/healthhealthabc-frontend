@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { UserOutlined } from "@ant-design/icons";
 
 function Navbar() {
   const [userData, setUserData] = React.useState<any>({});
@@ -23,9 +24,9 @@ function Navbar() {
   }, []);
 
   return (
-    <header className="bg-blue-50">
-      {/* Nav Menu */}
-      <nav className="container flex mx-auto px-4 lg:px-8">
+    <header>
+      {/* Nav Menu and Nav Bar for desktop */}
+      <nav className="hidden container mx-auto px-4 lg:flex lg:px-8">
         {/* Logo */}
         <a className="py-4 inline-block" href="/">
           <p>Logo</p>
@@ -58,6 +59,16 @@ function Navbar() {
           )}
         </ul>
       </nav>
+
+      {/* Nav Bar for Mobile */}
+      <div className="flex justify-between container mx-auto px-4 pt-2 lg:hidden">
+        <button>Menu</button>
+
+        {/* Profile Avatar */}
+        <div className="w-12 h-12 rounded-full overflow-hidden p-2 bg-white shadow-lg">
+          <UserOutlined className="w-full h-full object-cover" />
+        </div>
+      </div>
     </header>
   );
 }
