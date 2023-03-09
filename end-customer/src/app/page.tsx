@@ -31,6 +31,11 @@ function Home() {
       specialty: "Dentist",
       avatar: "https://picsum.photos/200",
     },
+    {
+      name: "Dr. John Doe",
+      specialty: "Dentist",
+      avatar: "https://picsum.photos/200",
+    },
   ];
 
   const whyChooseUs = [
@@ -139,7 +144,8 @@ function Home() {
 
       {/* Top Specialty Section */}
       <Section sectionTitle="Top Specialty">
-        <div className="flex items-center">
+        {/* Mobile version */}
+        <div className="flex items-center lg:hidden">
           <button
             onClick={() => {
               if (testRef.current) testRef.current.scrollLeft -= 300;
@@ -155,9 +161,9 @@ function Home() {
             {topSpecialties.map((specialty) => (
               <li
                 key={specialty}
-                className="snap-start w-1/3 shrink-0 px-2 grid lg:w-1/4"
+                className="snap-start w-1/3 shrink-0 px-2 grid"
               >
-                <div className="bg-[#00A3E0] grid place-items-center min-h-[150px] h-full lg:rounded-xl lg:min-h-[350px]">
+                <div className="bg-[#00A3E0] grid place-items-center min-h-[150px] h-full">
                   <figure className="text-white">
                     <figcaption>
                       <h3 className="text-center">{specialty}</h3>
@@ -176,11 +182,30 @@ function Home() {
             X
           </button>
         </div>
+
+        {/* PC Version */}
+        <ul className="hidden lg:flex">
+          {topSpecialties.splice(0, 4).map((specialty) => (
+            <li key={specialty} className="w-1/4 shrink-0 px-2">
+              <figure className="text-white h-80 relative  rounded-xl overflow-hidden bg-blue-50">
+                <img
+                  className="h-full w-full object-cover"
+                  src="/images/hero-bg.png"
+                  alt={specialty}
+                />
+                <figcaption className="absolute bottom-0 w-full py-2 bg-black bg-opacity-25">
+                  <h3 className="text-center">{specialty}</h3>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* Top Doctors Section */}
       <Section sectionTitle="Top Doctors">
-        <ul className="space-y-4">
+        {/* Mobile Version */}
+        <ul className="space-y-4 lg:hidden">
           {topDoctors.map((doctor, index) => (
             <li
               key={`${doctor.name}-${index}`}
@@ -198,11 +223,29 @@ function Home() {
             </li>
           ))}
         </ul>
+
+        {/* PC Version */}
+        <ul className="hidden lg:flex">
+          {topDoctors.map((doctor, index) => (
+            <li key={`${doctor.name}-${index}`} className="w-1/4 shrink-0 px-2">
+              <figure className="text-white h-80 relative  rounded-xl overflow-hidden bg-blue-50">
+                <img
+                  className="h-full w-full object-cover"
+                  src="/images/hero-bg.png"
+                  alt={doctor.name}
+                />
+                <figcaption className="absolute bottom-0 w-full py-2 bg-black bg-opacity-25">
+                  <h3 className="text-center">{doctor.name}</h3>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* Top Hospitals Section */}
       <Section sectionTitle="Top Hospitals">
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 lg:hidden">
           <div className="flex-1 bg-[#00A3E0] rounded-lg overflow-hidden">
             Test
           </div>
@@ -215,6 +258,24 @@ function Home() {
             </div>
           </div>
         </div>
+
+        {/* PC Version */}
+        <ul className="hidden lg:flex">
+          {topDoctors.map((doctor, index) => (
+            <li key={`${doctor.name}-${index}`} className="w-1/4 shrink-0 px-2">
+              <figure className="text-white h-80 relative  rounded-xl overflow-hidden bg-blue-50">
+                <img
+                  className="h-full w-full object-cover"
+                  src="/images/hero-bg.png"
+                  alt={doctor.name}
+                />
+                <figcaption className="absolute bottom-0 w-full py-2 bg-black bg-opacity-25">
+                  <h3 className="text-center">{doctor.name}</h3>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* Why Choose Us Section */}
