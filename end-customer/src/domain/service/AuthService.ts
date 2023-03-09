@@ -4,7 +4,7 @@ import {
   notificationSuccess,
 } from "../infra/notification/notificationActions";
 
-export const authPatientRegister = async (body: any) => {
+export const authRegister = async (body: any) => {
   const response = await axiosPostJson("/auth/register/patient", body);
 
   // Check if response is null
@@ -13,9 +13,10 @@ export const authPatientRegister = async (body: any) => {
     return null;
   }
 
+  const data = response.data;
   notificationSuccess("Registration successful!", "Please login to continue");
 
-  return response;
+  return data;
 };
 
 export const authLogin = async (body: any) => {
@@ -39,7 +40,8 @@ export const authLogin = async (body: any) => {
   // Save token in cookies
   document.cookie = `token=${token}; path=/; max-age=3600`;
 
+  const data = response.data;
   notificationSuccess("Login successful!", "Welcome back!");
 
-  return response;
+  return data;
 };

@@ -1,10 +1,10 @@
-export interface AuthPatientRegisterRequest {
+export interface AuthRegister {
   username: string;
   email: string;
   password: string;
 }
 
-export interface AuthLoginRequest {
+export interface AuthLogin {
   username: string;
   password: string;
 }

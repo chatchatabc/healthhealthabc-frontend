@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, Form, Input } from "antd";
-import { authPatientRegister } from "@/domain/service/AuthService";
+import { authRegister } from "@/domain/service/AuthService";
 
 function RegisterPage() {
   const [loading, setLoading] = React.useState(false);
@@ -11,8 +11,11 @@ function RegisterPage() {
   async function onFinish(values: any) {
     setLoading(true);
 
-    const isRegistered = await authPatientRegister(values);
-    if (isRegistered) form.resetFields();
+    const isRegistered = await authRegister(values);
+
+    if (isRegistered) {
+      form.resetFields();
+    }
 
     setLoading(false);
   }

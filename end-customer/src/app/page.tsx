@@ -94,7 +94,7 @@ function Home() {
       {/* Desktop Search Section */}
       <section className="px-4 lg:px-8">
         {/* Container */}
-        <div className="hidden h-96 relative container mx-auto rounded-xl overflow-hidden lg:flex">
+        <div className="hidden h-96 relative max-w-5xl mx-auto rounded-xl overflow-hidden lg:flex">
           {/* Left */}
           <div className="bg-[#00A3E0] flex-1 py-24 px-2 flex flex-col justify-between">
             <h2 className="text-3xl font-medium">
