@@ -8,9 +8,9 @@ function Section({
   sectionTitle: string;
 }) {
   return (
-    <section className="p-4 space-y-2 container mx-auto">
-      <header className="flex items-center space-x-4">
-        <div className="h-1 rounded-full bg-gradient-to-r from-[#00A3E0] to-[#F81B1B] w-12"></div>
+    <section className="p-4 space-y-2 max-w-5xl mx-auto">
+      <header className="flex items-center space-x-4 lg:justify-center">
+        <div className="h-1 rounded-full bg-gradient-to-r from-[#00A3E0] to-[#F81B1B] w-12 lg:hidden"></div>
         <h2 className="text-2xl font-bold">{sectionTitle}</h2>
       </header>
       {children}

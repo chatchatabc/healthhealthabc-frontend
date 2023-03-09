@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import { UserOutlined, AudioOutlined, SearchOutlined } from "@ant-design/icons";
+import { UserOutlined, SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import Section from "@/components/Section";
 
 function Home() {
-  const { Search } = Input;
-
   const testRef = React.useRef<HTMLUListElement>(null);
 
   const topSpecialties = [
@@ -94,7 +92,7 @@ function Home() {
       {/* Desktop Search Section */}
       <section className="px-4 lg:px-8">
         {/* Container */}
-        <div className="hidden h-96 relative max-w-5xl mx-auto rounded-xl overflow-hidden lg:flex">
+        <div className="hidden h-96 relative mx-auto max-w-5xl rounded-xl overflow-hidden lg:flex">
           {/* Left */}
           <div className="bg-[#00A3E0] flex-1 py-24 px-2 flex flex-col justify-between">
             <h2 className="text-3xl font-medium">
@@ -157,9 +155,9 @@ function Home() {
             {topSpecialties.map((specialty) => (
               <li
                 key={specialty}
-                className="snap-start w-1/3 shrink-0 px-2 grid"
+                className="snap-start w-1/3 shrink-0 px-2 grid lg:w-1/4"
               >
-                <div className="bg-[#00A3E0] grid place-items-center min-h-[150px] h-full">
+                <div className="bg-[#00A3E0] grid place-items-center min-h-[150px] h-full lg:rounded-xl lg:min-h-[350px]">
                   <figure className="text-white">
                     <figcaption>
                       <h3 className="text-center">{specialty}</h3>
@@ -221,9 +219,9 @@ function Home() {
 
       {/* Why Choose Us Section */}
       <Section sectionTitle="Why Choose Us">
-        <ul className="flex justify-center flex-wrap">
+        <ul className="flex justify-center flex-wrap md:justify-between">
           {whyChooseUs.map((item, index) => (
-            <li className="w-1/3 p-2" key={index + item.name}>
+            <li className="w-1/3 p-2 md:w-1/6" key={index + item.name}>
               <figure className="space-y-4 flex flex-col items-center">
                 <img
                   className="w-full aspect-square"
