@@ -26,17 +26,21 @@ Within this GitHub Repository, we have made three different sub directories that
   - Admin can `create`, `view`, `update`, and `delete` some users.
 - **Manage Transactions**
   - Admin can `view` the list of successful transactions, and can also `print` it.
+- **Manage Reviews**
+  - Admin can `view` and `update` the reviews of each users. They can also sort it by `date`, `specialty`, `doctor`, `patient`, and `rating`.
+- **Manage Reports**
+  - Admin can `view` and `update` the reports of each users. They can also sort it by `date`, `specialty`, `doctor`, and `patient`.
 
 ### **Partners**
 
 - **Waiting List**
   - Doctor can `view` and `update` his patients waiting list.
 - **History**
-  - Doctor can `view` his/her history patients.
+  - Doctor can `view` their history patients.
 - **Schedule**
   - Doctor can `create`, `view`, `update`, and `delete` his schedules.
 - **Profile**
-  - Doctor can `register`, `view`, `update`, and `delete` his/her own profile.
+  - Doctor can `register`, `view`, `update`, and `delete` their own profile.
 
 ### **End-customers**
 
@@ -46,6 +50,8 @@ Within this GitHub Repository, we have made three different sub directories that
 - **Schedules**
   - Patient can `view`, `update`, and `delete` his appointed schedule.
 - **History**
-  - Patient can `view` his/her history doctors.
+  - Patient can `view` their history doctors.
 - **Profile**
-  - Patient can `register`, `view`, `update`, and `delete` his/her own profile.
+  - Patient can `register`, `view`, `update`, and `delete` their own profile.
+- **Reviews**
+  - Patient can `create`, `view`, `update`, and `delete` their reviews on the doctor.
