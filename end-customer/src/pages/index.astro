@@ -1,5 +1,6 @@
 ---
 import siteInfoJson from "@data/site-info.json";
+import Navbar from "@/components/Navbar.astro";
 
 type Props = {
   title?: string;
@@ -30,6 +31,10 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <h1>Astro</h1>
+    <Navbar />
+    <main>
+      <h1>Astro</h1>
+    </main>
+    <footer></footer>
   </body>
 </html>
