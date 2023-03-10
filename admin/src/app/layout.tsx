@@ -12,17 +12,17 @@ export default function RootLayout({
 }) {
   const links = [
     {
-      href: "/",
+      href: "/home",
       label: "Home",
       icon: "/images/home.png",
     },
     {
-      href: "/",
+      href: "/doctors",
       label: "Doctors",
       icon: "/images/doctor.png",
     },
     {
-      href: "/",
+      href: "/specialties",
       label: "Specialties",
       icon: "/images/specialty.png",
     },
@@ -35,26 +35,27 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="relative">
+      <body>
         <header className="min-h-screen flex min-w-[1vw] left-0 bg-blue-100 group overflow-hidden transition-all z-[2] fixed hover:min-w-[20vw]">
           <nav className="flex justify-center flex-col w-full">
             <ul className="space-y-2">
               {links.map((link) => (
                 <li key={link.href}>
-                  <button className="flex w-full items-center p-4 hover:bg-white">
+                  <a
+                    href={link.href}
+                    className="flex w-full items-center p-4 hover:bg-white"
+                  >
                     <img className="h-8 w-8" src={link.icon} alt={link.label} />{" "}
                     <p className="ml-4 hidden group-hover:block">
                       {link.label}
                     </p>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
         </header>
-        <main className="absolute top-0 right-0 min-h-screen w-[95vw]">
-          {children}
-        </main>
+        <main className="pl-20">{children}</main>
       </body>
     </html>
   );
