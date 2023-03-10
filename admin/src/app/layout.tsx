@@ -19,26 +19,34 @@ export default function RootLayout({
     {
       href: "/",
       label: "Doctors",
+      icon: "/images/doctor.png",
     },
     {
       href: "/",
       label: "Specialties",
+      icon: "/images/specialty.png",
     },
     {
       href: "/logout",
       label: "Logout",
+      icon: "/images/logout.png",
     },
   ];
 
   return (
     <html lang="en">
       <body className="relative">
-        <header className="min-h-screen flex w-[5vw] left-0 bg-blue-100">
-          <nav className="flex justify-center flex-col">
-            <ul>
+        <header className="min-h-screen flex min-w-[1vw] left-0 bg-blue-100 group overflow-hidden transition-all z-[2] fixed hover:min-w-[20vw]">
+          <nav className="flex justify-center flex-col w-full">
+            <ul className="space-y-2">
               {links.map((link) => (
                 <li key={link.href}>
-                  <button>{link.label}</button>
+                  <button className="flex w-full items-center p-4 hover:bg-white">
+                    <img className="h-8 w-8" src={link.icon} alt={link.label} />{" "}
+                    <p className="ml-4 hidden group-hover:block">
+                      {link.label}
+                    </p>
+                  </button>
                 </li>
               ))}
             </ul>
