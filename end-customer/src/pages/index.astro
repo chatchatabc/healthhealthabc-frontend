@@ -1,40 +1,47 @@
 ---
-import siteInfoJson from "@data/site-info.json";
-import Navbar from "@/components/Navbar.astro";
+import Layout from "@/layouts/layout.astro";
+import { getCollection } from "astro:content";
+import { Img } from "astro-imagetools/components";
+import Section from "@/components/widgets/Section.astro";
 
-type Props = {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  author?: string;
-};
-
-const {
-  title = siteInfoJson.title,
-  description = siteInfoJson.description,
-  keywords = siteInfoJson.keywords,
-  author = siteInfoJson.author,
-} = Astro.props as Props;
+const specialties = await getCollection("specialties");
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+<Layout>
+  <!-- Hero Section -->
+  <section>
+    <h1>Index</h1>
+  </section>
 
-    <!-- Site Information -->
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <meta name="author" content={author} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <Navbar />
-    <main>
-      <h1>Astro</h1>
-    </main>
-    <footer></footer>
-  </body>
-</html>
+  <!-- Top Specialty -->
+  <Section sectionTitle="Top Specialty">
+    <ul class="flex justify-center">
+      {
+        specialties.length ? (
+          [...specialties].splice(0, 4).map((specialty) => (
+            <li class="w-1/4 p-2">
+              <a
+                class="block overflow-hidden rounded-lg"
+                href={`/specialties/${specialty.slug}`}
+              >
+                <figure class="relative">
+                  <div class="h-96">
+                    <Img
+                      src={specialty.data.image_url}
+                      alt={specialty.data.title}
+                    />
+                  </div>
+                  <figcaption class="absolute p-2 bg-black bg-opacity-50 text-white bottom-0 w-full text-center">
+                    <p>{specialty.data.title}</p>
+                  </figcaption>
+                </figure>
+              </a>
+            </li>
+          ))
+        ) : (
+          <li>No specialties found</li>
+        )
+      }
+    </ul>
+  </Section>
+</Layout>

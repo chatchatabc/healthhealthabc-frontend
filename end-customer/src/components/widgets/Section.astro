@@ -1,0 +1,18 @@
+---
+type Props = {
+  sectionTitle: string;
+};
+
+const { sectionTitle } = Astro.props as Props;
+---
+
+<section class="p-4 space-y-2 max-w-5xl mx-auto">
+  <header class="flex items-center space-x-4 lg:justify-center">
+    <div
+      class="h-1 rounded-full bg-gradient-to-r from-[#00A3E0] to-[#F81B1B] w-12 lg:hidden"
+    >
+    </div>
+    <h2 class="text-2xl font-bold">{sectionTitle}</h2>
+  </header>
+  <slot />
+</section>
