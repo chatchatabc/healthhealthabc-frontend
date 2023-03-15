@@ -55,3 +55,13 @@ Within this GitHub Repository, we have made three different sub directories that
   - Patient can `register`, `view`, `update`, and `delete` their own profile.
 - **Reviews**
   - Patient can `create`, `view`, `update`, and `delete` their reviews on the doctor.
+
+## Technical
+
+### Admin
+
+The admin interface should achieve the following requirements:
+
+1. The interface should have the same experience like browsing through an application.
+2. asdasdasd
+3. asd

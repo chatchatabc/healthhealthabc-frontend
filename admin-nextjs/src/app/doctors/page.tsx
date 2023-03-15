@@ -146,7 +146,7 @@ function page() {
           ]}
         />
       </section>
-      <section className="mt-8">
+      <section className="mt-4">
         <Table
           pagination={{ position: ["topRight" as TablePaginationPosition] }}
           columns={columns}
